@@ -1,0 +1,3 @@
+useDynLib(kolmim, .registration = TRUE, .fixes = "K_")
+export(pkolmim, ks.test.imp)
+
