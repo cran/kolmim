@@ -1,4 +1,10 @@
-pkolmim = function (d, n) {
+# Original cdf by Wang et al
+pkolm <- function (d, n) {
+  if (d <= 0 || n <= 0) stop("non-positive argument")
+  .Call(K_pKolmogorov2x, as.double(d), as.integer(n), PACKAGE="kolmim")
+}
+
+pkolmim <- function (d, n) {
   if (any(d <= 0) || any(n <= 0)) stop("non-positive argument")
   l <- max(length(d), length(n))
   .Call(K_pkolmim, as.double(rep(d, length=l)),
@@ -12,6 +18,7 @@ ks.test.imp <- function(x, y, ...) {
     y <- get(y, mode = "function", envir = parent.frame())
   if(!is.function(y))
     stop("'y' must be a function or a string naming a valid function")
+
   DNAME <- deparse(substitute(x))
   x <- x[!is.na(x)]
   n <- length(x)

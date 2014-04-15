@@ -34,10 +34,10 @@ ks.test.imp(x, y, \dots)
 }
 \source{
   The two-sided one-sample distribution comes \emph{via}
-  Carvalho (2013).
+  Carvalho (2014).
 }
 \references{
-  Luis Carvalho (2013),
+  Luis Carvalho (2014),
   \emph{An improved evaluation of Kolmogorov's distribution}.
 }
 \seealso{

@@ -1,3 +1,23 @@
+/*
+ *  kolmim: a R package for improved evaluation of Kolmogorov's distribution
+ *  Copyright (C) 2013   Luis Carvalho
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, a copy is available at
+ *  http://www.r-project.org/Licenses/
+ */
+
+
 #include <R.h>
 #include <Rinternals.h>
 #include <R_ext/Rdynload.h>
@@ -94,12 +114,25 @@ SEXP pkolmim2x (SEXP sx, SEXP sn) {
   return ScalarReal(p);
 }
 
+/* from ks.c */
+double K0(int n, double d);
+void m_multiply(double *A, double *B, double *C, int m);
+void m_power(double *A, int eA, double *V, int *eV, int m, int n);
+
+/* The two-sided one-sample 'exact' distribution */
+SEXP pKolmogorov2x(SEXP statistic, SEXP sn) {
+  int n = asInteger(sn);
+  double st = asReal(statistic);
+  double p = K0(n, st);
+  return ScalarReal(p);
+}
 
 /* Interface */
 
 static const R_CallMethodDef callMethods[] = {
   {"pkolmim", (DL_FUNC) &pkolmim, 3},
   {"pkolmim2x", (DL_FUNC) &pkolmim2x, 2},
+  {"pKolmogorov2x", (DL_FUNC) &pKolmogorov2x, 2},
   {NULL, NULL, 0}
 };
 
