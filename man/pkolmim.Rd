@@ -34,11 +34,13 @@ pkolmim(d, n)
   Returns \eqn{K(n, d) = P(D_n < d)}.
 }
 \source{
-  The two-sided one-sample distribution comes \emph{via} Carvalho (2014).
+  The two-sided one-sample distribution comes \emph{via} Carvalho (2015).
 }
 \references{
-  Luis Carvalho (2014),
-  \emph{An improved evaluation of Kolmogorov's distribution}.
+  Luis Carvalho (2015),
+  An Improved Evaluation of Kolmogorov's Distribution.
+  \emph{Journal of Statistical Software}, \bold{65}/3, 1--7.
+  \url{http://www.jstatsoft.org/v65/c03/}.
 
   George Marsaglia, Wai Wan Tsang and Jingbo Wang (2003),
   Evaluating Kolmogorov's distribution.

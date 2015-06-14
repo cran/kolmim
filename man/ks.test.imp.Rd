@@ -34,11 +34,13 @@ ks.test.imp(x, y, \dots)
 }
 \source{
   The two-sided one-sample distribution comes \emph{via}
-  Carvalho (2014).
+  Carvalho (2015).
 }
 \references{
-  Luis Carvalho (2014),
-  \emph{An improved evaluation of Kolmogorov's distribution}.
+  Luis Carvalho (2015),
+  An Improved Evaluation of Kolmogorov's Distribution.
+  \emph{Journal of Statistical Software}, \bold{65}/3, 1--7.
+  \url{http://www.jstatsoft.org/v65/c03/}.
 }
 \seealso{
   \code{\link{pkolmim}} for the cumulative distribution function of

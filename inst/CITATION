@@ -1,0 +1,18 @@
+citHeader("To cite kolmim in publications use:")
+
+citEntry(entry = "Article",
+  title        = "An Improved Evaluation of Kolmogorov's Distribution",
+  author       = personList(as.person("Luis Carvalho")),
+  journal      = "Journal of Statistical Software",
+  year         = "2015",
+  volume       = "65",
+  number       = "3",
+  pages        = "1--7",
+  url          = "http://www.jstatsoft.org/v65/c03/",
+
+  textVersion  =
+  paste("Luis Carvalho (2015).",
+        "An Improved Evaluation of Kolmogorov's Distribution.",
+        "Journal of Statistical Software, 65(3), 1-7.",
+        "URL http://www.jstatsoft.org/v65/c03/.")
+)

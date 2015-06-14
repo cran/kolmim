@@ -1,9 +1,10 @@
-fe6c8a589363ce850ea796b409b08a87 *DESCRIPTION
+67771710c96a3a91a11e4fdbf43f3da6 *DESCRIPTION
 2ac705834a0145326baa85881705b9dd *NAMESPACE
 51c83d8ec2d8e66a6ecefcc6824a19c8 *R/kolmim.R
-b69a4883c0549b813c5cdfa2b644d11f *man/ks.test.imp.Rd
+6a4067d6b6280308d010a24dd53f9202 *inst/CITATION
+0eba5515964b0e11a439702f5a230ba6 *man/ks.test.imp.Rd
 d88f11fc048b21f7b13afa2baba6a73c *man/pkolm.Rd
-be15bb1798ed61cb7a6d25611f8a0b4c *man/pkolmim.Rd
+02bf1815e4de21539b5394a0266c03d9 *man/pkolmim.Rd
 8290d2e9740414e315237f0d5d4024bb *src/Makevars
-a85db85c3bf070447cb2374224d9740e *src/kolmim.c
+2406d89355cbc9333ef4d68f379e0389 *src/kolmim.c
 821ab4d3a562ad73be3901f19ffa8de4 *src/ks.c

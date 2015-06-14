@@ -28,7 +28,7 @@
 
 static int one = 1; /* for BLAS routines */
 
-/* `buf` is at least 3*m-2 long */ 
+/* `buf` is at least max{2, m + m + (m - 2)} long */ 
 static double K (int n, double d, double *buf) {
   int i, j, ns = 0; /* ns is number of exp shifts */
   double u, s;
@@ -37,8 +37,8 @@ static double K (int n, double d, double *buf) {
   double h = k - n * d;
   /* === initialize v, w, and q === */
   double *v = buf;
-  double *w = v + m;
-  double *q = w + m - 2;
+  double *q = v + m;
+  double *w = q + m; /* 'w' is m - 2 long */
   for (i = 0; i < m; i++) q[i] = 0;
   q[k - 1] = u = s = 1.0; /* q = e_k */
   for (j = 0; j < m - 1; j++) {
@@ -49,7 +49,7 @@ static double K (int n, double d, double *buf) {
   v[m - 1] = (1 - 2 * u * h + ((h > 0.5) ? pow(2 * h - 1, m) : 0)) * s / m;
   /* === iterate === */
   for (i = 1; i <= n; i++) {
-    s = (double) i / n; u = q[0];
+    s = ((double) i) / n; u = q[0];
     q[0] = F77_NAME(ddot)(&m, v, &one, q, &one) * s; /* no shift */
     for (j = 1; j < m - 1; j++) {
       double a = u; /* q[j - 1] */
@@ -58,7 +58,8 @@ static double K (int n, double d, double *buf) {
       a += F77_NAME(ddot)(&m1, w, &one, q + j, &one) + v[m1] * q[m - 1];
       q[j] = a * s;
     }
-    q[m - 1] = (v[0] * q[m - 1] + u) * s;
+    if (m > 1) /* shift? */
+      q[m - 1] = (v[0] * q[m - 1] + u) * s;
     /* check for under/overflows */
     if (q[k - 1] > OVERSCALE) {
       double alpha = UNDERSCALE;
@@ -94,7 +95,7 @@ SEXP pkolmim (SEXP sx, SEXP sn, SEXP snx) {
     if (mm < m) mm = m;
   }
   /* iterate */
-  buf = (double *) Calloc(3 * mm - 2, double);
+  buf = (double *) Calloc((mm > 1) ? (3 * mm - 2) : 2, double);
   PROTECT(sp = allocVector(REALSXP, nx));
   p = REAL(sp);
   for (i = 0; i < nx; i++) p[i] = K(n[i], x[i], buf);
